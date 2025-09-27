@@ -1,0 +1,157 @@
+.heroSection{
+    min-height: 500px;
+    height: 100vh;
+    max-height: 800px;
+    position: relative;
+    background-image: url('/images/number.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0;
+
+}
+
+.parthero{
+    position: absolute;
+    min-height: 500px;
+    max-height: 800px;
+    width: 100%;
+    top:0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+.heroContent{
+    max-width: 450px;
+    width: 45%;
+    min-width: 350px;
+}
+.heroimgcontent{
+    height: 100%;
+    width: 30%;
+}
+.heroImage{
+    width: 100%;
+    min-width:200px;
+    height: 95%;
+    border-bottom-left-radius: calc(infinity * 1px);
+    border-bottom-right-radius: calc(infinity * 1px);
+}
+
+
+
+/* about */
+.aboutcontent{
+
+    display: flex;
+    justify-content: space-around;
+        align-items: center;
+
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.aboutmaincontent{
+    width: 300px;
+}
+.aboutparaghraph{
+    width: 500px;
+}
+
+
+
+
+@media (max-width: 1030px) {
+    .heroContent{
+        width: 53%;
+    }
+    .heroimgcontent{
+        width: 37%;
+    }
+}
+@media (max-width: 900px){
+   .aboutmaincontent{
+        width: 40%;
+    }
+    .aboutparaghraph{
+        width: 50%;
+    } 
+}
+@media (max-width: 800px) {
+    .heroContent{
+        width: 53%;
+    }
+    .parthero{
+        gap: 2rem;
+        padding:0 2rem;
+    }
+    .heroimgcontent{
+        width: 32%;
+    }
+}
+@media (max-width: 643px) {
+    .heroContent{
+        width: 98%;
+        min-width:auto;
+    }
+    .parthero{
+        padding: 0 10px;
+        gap: 20px;
+        align-items: flex-start;
+        height: fit-content;
+        padding-bottom: 10px;
+    max-height: 850px;
+    min-height: 790px;
+
+    }
+    .heroimgcontent{
+        width: 450px;
+        height: 500px;
+    }
+    .heroSection{
+    max-height: 850px;
+    min-height: 825px;
+    }
+
+    .aboutmaincontent{
+        width: 70%;
+        text-align: center;
+    }
+    .aboutparaghraph{
+        width: 90%;
+        text-align: center;
+
+    } 
+}
+@media (max-width: 450px){
+        .aboutmaincontent{
+        width: 85%;
+    }
+    .aboutparaghraph{
+        width: 98%;
+
+    } 
+}
+@media (max-width: 370px){
+        .aboutmaincontent{
+        width: 95%;
+    }
+    .aboutparaghraph{
+        width: 100%;
+
+    } 
+}
+@media (max-width: 300px) {
+
+    /* .heroSection{
+         min-height: 114vh;
+    }  */
+    .heroimgcontent{
+        width: 350px;
+        height: 400px;
+    }
+}
