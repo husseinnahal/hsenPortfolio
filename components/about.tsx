@@ -10,9 +10,8 @@ export function About() {
             I create reliable <span className="text-yellow-500">full-stack</span> solutions that power the{" "}
             <span className="text-yellow-500">web</span>
           </p>
-          <p className={`text-gray-500 mt-2 ${styles.aboutparaghraph}`} data-animate="aboutinfo">
-            From planning to production, my focus is on building software that solves problems and enhances user
-            experiences.
+          <p className={`text-gray-400 mt-2 ${styles.aboutparaghraph}`} data-animate="aboutinfo">
+            I am a Computer Science graduate and Full-Stack Developer specializing in building end-to-end web applications. I combine responsive user interfaces with robust APIs, secure authentication, and optimized database designs to solve real-world problems.
           </p>
         </div>
 

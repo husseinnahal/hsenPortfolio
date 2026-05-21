@@ -1,30 +1,31 @@
 export function ProfessionalJourney() {
   const experiences = [
-    {
-      period: "2022-2025",
-      title: "Education",
-      subtitle: "Bachelors in Computer Science",
-      company: "At Islamic University Of Lebanon",
-      description:
-        "Focused on software engineering fundamentals, data structures, algorithms, and web development technologies.",
-      type: "education",
-    },
-    {
-      period: "2024-Present",
-      title: "Devmode",
-      subtitle: "Freelance",
-      company: "Full-Stack DEVELOPER",
-      description:
-        "Built responsive and user-friendly web applications using the MERN stack with Next.js. Collaborated with a team of developers to create dynamic web applications.",
-      type: "work",
-    },
+  {
+    period: "2022 — 2025",
+    title: "Bachelors in Computer Science",
+    subtitle: "Islamic University of Lebanon",
+    company: "Education",
+    description:
+      "Built a strong foundation in software engineering, algorithms, databases, and modern web development technologies.",
+    type: "education",
+  },
+
+      {
+        period: "2025 — Present",
+        title: "Full-Stack Developer",
+        subtitle: "Basma • Freelance",
+        company: "Remote",
+        description:
+          "Developing scalable full-stack web applications using the MERN stack, including API integration, authentication systems, and optimized database architecture.",
+        type: "work",
+      },
     {
       period: "2025",
-      title: "BrainKets",
-      subtitle: "Hybrid - Internship",
-      company: "FRONT-END DEVELOPER",
+      title: "Frontend Developer Intern",
+      subtitle: "BrainKets • Hybrid Internship",
+      company: "Internship",
       description:
-      "Developed and implemented an interactive event calendar using Next.js. Designed and built a dashboard for event management, improving usability and efficiency.Used Git/GitHub for version control and teamwork",
+        "Developed interactive dashboard features and an event management system using Next.js while collaborating with the team through Git and modern development workflows.",
       type: "work",
     },
   ]
@@ -36,7 +37,7 @@ export function ProfessionalJourney() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 ">
           {experiences.map((exp, index) => (
-            <div key={index} className="bg-slate-800 p-6 rounded-lg">
+            <div key={index} data-animate="journey-card" className="bg-slate-800 p-6 rounded-lg">
               <div className="flex items-center justify-between mb-4">
                 <span
                   className={`px-3 py-1 rounded-full text-sm font-semibold ${

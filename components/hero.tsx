@@ -26,13 +26,13 @@ export function Hero() {
           <div className={`text-center sm:text-left ${styles.heroContent}`} data-animate="hero-info">
             <p className="text-gray-400 mb-2">Hi, my name is</p>
             <h1 className={` text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 text-balance`}>Hussein Nahal</h1>
-            <h2 className="text-lg sm:text-2xl lg:text-4xl mb-6 text-balance 
-               bg-gradient-to-r from-white to-[#161A28] 
+            <h2 className="text-base sm:text-xl lg:text-3xl mb-6 text-balance 
+               bg-gradient-to-r from-[#ffffff] to-[#b0b0b0] 
                bg-clip-text text-transparent">
-              I build things for the <span className="text-yellow-500">Web</span>
+              I engineer <span className="text-yellow-500">Scalable Full-Stack</span> solutions
             </h2>
             <p className="text-gray-400 text-base sm-text-lg mb-8 max-w-2xl text-pretty">
-                Im a Full-Stack developer specialized in building (and occasionally designing) exceptional user-centered digital experiences.      
+                I am a Full-Stack Developer specializing in building scalable web applications with polished user interfaces and robust architectures.
             </p>
             <a href="#projects" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-5 sm-px-8 py-3 text-base sm-text-lg" style={{borderRadius: '8px'}}>
               Check My Projects

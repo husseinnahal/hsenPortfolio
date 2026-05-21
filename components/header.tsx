@@ -28,7 +28,7 @@ export function Header() {
             ))}
           </nav>
           <a
-            href="/images/husseinNahal.pdf" 
+            href="/images/HusseinNahal–FullStackDeveloper.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
           >

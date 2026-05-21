@@ -24,9 +24,10 @@ import { useState } from "react"
 /**
  * @param {ProjectDetailProps} props
  */
-export function ProjectDetail({ project }) {
+export function ProjectDetail({ project }: { project: Project }) {
   const [selectedImage, setSelectedImage] = useState(0)
 
+console.log(project);
 
   return (
     <div className=" pb-16">
@@ -164,7 +165,7 @@ export function ProjectDetail({ project }) {
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-4">
-                  {project.features.map((feature, index) => (
+                  {project.features.map((feature: string, index: number) => (
                     <div key={index} className="flex items-start gap-3 p-3 bg-slate-700/50 rounded-lg">
                       <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-300">{feature}</span>
@@ -193,7 +194,7 @@ export function ProjectDetail({ project }) {
 
               {/* Thumbnail Grid */}
               <div className="grid grid-cols-2  [@media(min-width:400px)_and_(max-width:770px)]:grid-cols-3  md:grid-cols-4 gap-4">
-                {project.images.map((image, index) => (
+                {project.images.map((image: string, index: number) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
@@ -224,7 +225,7 @@ export function ProjectDetail({ project }) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    {project.techStack.frontend.map((tech, index) => (
+                    {project.techStack.frontend.map((tech: string, index: number) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
                         <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                         {tech}
@@ -240,7 +241,7 @@ export function ProjectDetail({ project }) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    {project.techStack.backend.map((tech, index) => (
+                    {project.techStack.backend.map((tech: string, index: number) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
                         <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                         {tech}
@@ -256,7 +257,7 @@ export function ProjectDetail({ project }) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    {project.techStack.database.map((tech, index) => (
+                    {project.techStack.database.map((tech: string, index: number) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
                         <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
                         {tech}
@@ -272,7 +273,7 @@ export function ProjectDetail({ project }) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    {project.techStack.tools.map((tech, index) => (
+                    {project.techStack.tools.map((tech: string, index: number) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
                         {tech}
