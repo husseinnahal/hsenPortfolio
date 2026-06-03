@@ -1,9 +1,19 @@
 import { Analytics } from "@vercel/analytics/next"
-import { GeistMono } from "geist/font/mono"
-import { GeistSans } from "geist/font/sans"
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import "./globals.css"
+import { SnowEffect } from "@/components/snow-effect"
+
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+})
 
 export const metadata: Metadata = {
   title: "Hussein Nahhal - Full Stack Developer",
@@ -19,7 +29,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`font-sans ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
+        <SnowEffect />
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>

@@ -95,7 +95,7 @@ export const projects: Project[] = [
     longDescription:
       "A showcase of various projects developed using different technologies, ranging from management systems and e-commerce sites to experimental applications. These projects highlight versatility across multiple frameworks, databases, and tools.",
     image: "/images/others.png",
-    images: ["/images/others.png","/images/others/other1.jpg", "/images/others/other2.png", "/images/others/wecare.jpg", "/images/others/foodev.jpg" , "/images/others/elegance.jpg", "/images/others/lmashtal.jpeg", "/images/others/other3.png", "/images/others/other4.png"],
+    images: ["/images/others.png","/images/others/other2.png", "/images/others/other1.jpg", "/images/others/wecare.jpg", "/images/others/foodev.jpg" , "/images/others/msd.png" , "/images/others/elegance.jpg", "/images/others/lmashtal.jpeg", "/images/others/oren.png", "/images/others/other3.png", "/images/others/other4.png"],
     tags: [],
     liveUrl: "#",
     githubUrl: "#",

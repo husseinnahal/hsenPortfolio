@@ -1,8 +1,18 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+"use client"
+
+import { ArrowUpRight } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { useState, useRef, useEffect } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function ImportantProjects() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
   const projects = [
     {
       id: "walletly",
@@ -20,75 +30,119 @@ export function ImportantProjects() {
     },
     {
       id: "others",
-      title: "More Projects",
+      title: "More Work",
       description:
         "Additional projects covering dashboards, APIs, business websites, and UI systems.",
       image: "/images/others.png",
     },
-  ];
+  ]
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".project-row",
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          stagger: 0.15,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 70%",
+          },
+        }
+      )
+    }, containerRef)
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section
-      id="projects"
-      className="py-24 px-4 bg-slate-900/40"
-      data-animate="projects"
-    >
-      <div className="container mx-auto max-w-7xl">
-        <h2
-          className="text-3xl font-bold text-center mb-14"
-          style={{
-            borderBottom: "2px solid #897505",
-            width: "fit-content",
-            margin: "0 auto 60px",
-          }}
-        >
-          Featured Projects
+    <section  id="projects" className="relative min-h-screen w-full bg-[#1a3a8a] overflow-hidden flex flex-col justify-center py-24 sm:py-32 border-t border-white/10">
+      
+      {/* Background Images Layer */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {projects.map((proj, idx) => {
+          const isActive = activeIndex === idx
+          return (
+            <div 
+              key={idx} 
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${isActive ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <Image
+                src={proj.image || "/placeholder.svg"}
+                alt={proj.title}
+                fill
+                className={`object-cover transition-transform duration-[15s] ease-out ${isActive ? 'scale-110' : 'scale-100'}`}
+              />
+            </div>
+          )
+        })}
+        {/* Dark Vignette Overlay for maximum contrast */}
+        <div className="absolute inset-0 bg-[var(--bg-secondary)]/70  backdrop-blur-[4px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-secondary)] via-[var(--bg-secondary)]/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-secondary)] via-transparent to-transparent opacity-80" />
+      </div>
+
+      {/* Foreground Content */}
+      <div className=" mx-auto px-4 sm:px-8  lg:px-14 xl:px-16 relative z-10 w-full" ref={containerRef}>
+        <h2 className="text-[var(--accent-400)] font-mono tracking-[0.3em] uppercase text-sm mb-16 inline-block border border-[var(--accent-400)]/30 px-5 py-2 rounded-full bg-[var(--accent-400)]/10 backdrop-blur-md">
+          Featured Work
         </h2>
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Link
-              key={index}
-              href={`/projects/${project.id}`}
-              data-animate="project-card"
-              className="group relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/60 hover:border-yellow-500 transition-all duration-500 hover:-translate-y-2"
-            >
-              {/* Image */}
-              <div className="relative h-[250px] overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-full object-inherit hover:scale-110 transition-transform duration-300"
-                    layout="fill"
-                  />
+        <div className="flex flex-col w-full border-t border-white/10" onMouseLeave={() => setActiveIndex(0)}>
+          {projects.map((proj, idx) => {
+            const isActive = activeIndex === idx
 
-                {/* overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent" />
+            return (
+              <Link
+                key={idx}
+                href={`/projects/${proj.id}`}
+                onMouseEnter={() => setActiveIndex(idx)}
+                className="project-row group relative py-10 lg:py-16 border-b sm:px-4 border-white/10 flex flex-col md:flex-row lg:items-center justify-between transition-colors duration-500 hover:border-white/40 hover:bg-white/[0.02]"
+              >
+                <div className="flex flex-col md:flex-row md:items-center gap-6 lg:gap-16">
+                  {/* Number */}
+                  <span className={`font-mono text-xl lg:text-3xl transition-colors duration-500 ${isActive ? 'text-[var(--accent-400)]' : 'text-white/20'}`}>
+                    0{idx + 1}
+                  </span>
 
-                {/* arrow */}
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 opacity-0 group-hover:opacity-100 transition">
-                  <ArrowUpRight className="w-5 h-5 text-white" />
+                  {/* Title */}
+                  <h3 
+                    className="text-5xl sm:text-6xl md:text-5xl lg:text-[5rem] xl:text-[6rem] font-black uppercase tracking-tighter transition-all duration-500 leading-[0.85] m-0"
+                    style={{
+                      WebkitTextStroke: isActive ? '0px transparent' : '1px rgba(255,255,255,0.2)',
+                      color: isActive ? 'white' : 'transparent',
+                      textShadow: isActive ? '0 0 60px rgba(255,255,255,0.3)' : 'none'
+                    }}
+                  >
+                    {proj.title}
+                  </h3>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-6">
-
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-yellow-400 transition">
-                  {project.title}
-                </h3>
-
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-
-              {/* bottom glow */}
-              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-yellow-500 via-orange-400 to-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </Link>
-          ))}
+                {/* Animated Description & Button */}
+                <div 
+                  className={`mt-8 lg:mt-0 lg:max-w-md xl:max-w-lg transition-all duration-700 ease-out flex flex-col items-start md:items-end text-left md:text-right ${
+                    isActive ? 'opacity-100 lg:translate-x-0' : 'opacity-100 lg:opacity-0 lg:translate-x-12 pointer-events-auto lg:pointer-events-none'
+                  }`}
+                >
+                  <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-[var(--text-primary)]/90 font-light mb-8 max-w-sm lg:max-w-none">
+                    {proj.description}
+                  </p>
+                  
+                  <div className="flex items-center gap-4 md:gap-2 lg:gap-4 text-[var(--accent-400)] font-mono uppercase tracking-widest text-sm group-hover:drop-shadow-[0_0_15px_rgba(251,191,36,0.8)] transition-all duration-500">
+                    <span className="font-bold">View Project</span>
+                    <div className="w-8 h-8 lg:w-12 lg:h-12 rounded-full border border-[var(--accent-400)]/30 flex items-center justify-center bg-[var(--accent-400)]/10 group-hover:bg-[var(--accent-400)] group-hover:text-black transition-all duration-500 group-hover:scale-110">
+                      <ArrowUpRight className="w-6 h-6" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
-  );
+  )
 }

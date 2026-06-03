@@ -31,8 +31,9 @@ console.log(project);
 
   return (
     <div className=" pb-16">
+      
       {/* Hero Section */}
-      <div className="relative min-h-[60vh] py-22  flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+      <div className="relative min-h-[60vh] py-22 flex items-center justify-center bg-gradient-to-br from-[var(--bg-primary)] via-[var(--bg-secondary)] to-[var(--bg-tertiary)] ">
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
@@ -40,7 +41,7 @@ console.log(project);
             <div className="flex-1 ">
 
               <Link
-                href="/"
+                href="/#projects"
                 className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors"
               >
                 <ArrowLeft size={20} />
@@ -66,7 +67,7 @@ console.log(project);
                           size="lg"
                           variant="outline"
                           style={{cursor:"pointer"}}
-                          className="bg-yellow-500  hover:bg-yellow-600 text-black font-semibold"
+                          className="btn-shimmer border-0 font-semibold"
                         >
                           <ExternalLink className="w-5 h-5 mr-2" />
                               View Live Site
@@ -138,17 +139,17 @@ console.log(project);
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 pt-16 pb-7 text-white">
+      <div className=" mx-auto px-4 pt-16 pb-7 text-white">
 
         <Tabs defaultValue="overview" className="w-full">
           <TabsList className="grid w-full grid-cols-3 lg:w-fit lg:grid-cols-3 mb-8 bg-slate-800 border border-slate-700 ">
-            <TabsTrigger style={{cursor:"pointer"}} value="overview" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-white text-gray-300">
+            <TabsTrigger style={{cursor:"pointer"}} value="overview" className="data-[state=active]:bg-[var(--accent-500)] data-[state=active]:text-[var(--bg-primary)] text-gray-300">
               Overview
             </TabsTrigger>
-            <TabsTrigger style={{cursor:"pointer"}} value="gallery" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-white text-gray-300">
+            <TabsTrigger style={{cursor:"pointer"}} value="gallery" className="data-[state=active]:bg-[var(--accent-500)] data-[state=active]:text-[var(--bg-primary)] text-gray-300">
               Gallery
             </TabsTrigger>
-            <TabsTrigger style={{cursor:"pointer"}} value="tech" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-white text-gray-300">
+            <TabsTrigger style={{cursor:"pointer"}} value="tech" className="data-[state=active]:bg-[var(--accent-500)] data-[state=active]:text-[var(--bg-primary)] text-gray-300">
               Tech Stack
             </TabsTrigger>
 
@@ -159,7 +160,7 @@ console.log(project);
             <Card className="bg-slate-800 border-slate-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
-                  <Zap className="w-5 h-5 text-yellow-500" />
+                  <Zap className="w-5 h-5 text-[var(--accent-400)]" />
                    Key Features
                 </CardTitle>
               </CardHeader>
@@ -199,7 +200,7 @@ console.log(project);
                     key={index}
                     onClick={() => setSelectedImage(index)}
                     className={`aspect-video bg-slate-800 rounded-lg overflow-hidden border-2 transition-all ${
-                      selectedImage === index ? "border-yellow-500" : "border-slate-700 hover:border-slate-600"
+                      selectedImage === index ? "border-[var(--accent-400)]" : "border-slate-700 hover:border-slate-600"
                     }`}
                     style={{cursor:"pointer"}}
                   >
@@ -275,7 +276,7 @@ console.log(project);
                   <div className="space-y-2">
                     {project.techStack.tools.map((tech: string, index: number) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                        <div className="w-2 h-2 bg-[var(--accent-400)] rounded-full"></div>
                         {tech}
                       </div>
                     ))}
