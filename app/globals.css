@@ -181,13 +181,11 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  overflow-x: hidden;
 }
 
 /* Smooth scroll overrides for Lenis */
