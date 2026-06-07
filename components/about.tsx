@@ -81,14 +81,14 @@ export function About() {
 
   return (
     <section ref={containerRef} id="about" className="relative w-full bg-gradient-to-b from-[var(--accent-300)] to-[var(--bg-primary)]  ">
-      <div className="absolute top-[-80px] sm:top-[-100px] md:top-[-120px] lg:top-[-9%] left-[-10%] sm:left-[-5%] w-[110%] sm:w-[105%] overflow-hidden   pointer-events-none z-[1]" >
-        <div className="flex items-end w-full min-w-full justify-between pb-6">
+      <div className="absolute top-[-80px] sm:top-[-100px] md:top-[-120px] lg:top-[-9%] left-[-10%] sm:left-[-5%] w-[110%] sm:w-[105%]  xl:w-[100%] xl:left-[0%] overflow-hidden   pointer-events-none z-[1]" >
+        <div className="flex items-end w-full min-w-full justify-between pb-6 ">
           <Image
             src="/images/cloud.png"
             alt="Cloud"
             width={600}
             height={200}
-            className="w-[57vw] h-[200px] sm:w-[48vw] sm:h-[200px] md:h-auto object-cover md:object-contain relative z-[1] opacity-90 overflow-visible  translate-y-3 select-none"
+            className="w-[57vw] h-[200px] sm:w-[48vw] sm:h-[200px] md:h-auto object-cover md:object-contain  relative z-[1] opacity-90 overflow-visible  translate-y-3 select-none"
           />
           <Image
             src="/images/cloud.png"
@@ -102,7 +102,7 @@ export function About() {
             alt="Cloud"
             width={600}
             height={200}
-            className="w-[57vw] h-[200px] sm:w-[48vw] sm:h-[200px] md:h-auto object-cover  md:object-contain -ml-[20vw] relative z-[1]  opacity-90 shrink-0 overflow-visible translate-y-5 select-none"
+            className="w-[57vw] h-[200px] sm:w-[48vw] sm:h-[200px] md:h-auto object-cover md:object-contain -ml-[20vw] xl:-ml-[27vw] relative z-[1]  opacity-90 shrink-0 overflow-visible translate-y-5 select-none"
           />
         </div>
       </div>
