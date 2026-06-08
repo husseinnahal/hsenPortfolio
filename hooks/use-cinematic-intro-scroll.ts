@@ -65,6 +65,9 @@ export function useCinematicIntroScroll(
   const imagesRef = useRef<(HTMLImageElement | undefined)[]>([])
   const frameRef = useRef(-1)
 
+  const isMobileDevice = typeof window !== "undefined" && window.innerWidth < 640
+  const step = isMobileDevice ? 2 : 1
+
   useEffect(() => {
     const canvas = canvasRef.current
     const pin = pinRef.current
@@ -74,7 +77,7 @@ export function useCinematicIntroScroll(
     if (!ctx) return
 
     const resizeCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const dpr = isMobileDevice ? 1 : Math.min(window.devicePixelRatio || 1, 2)
       const { width, height } = pin.getBoundingClientRect()
       canvas.width = Math.floor(width * dpr)
       canvas.height = Math.floor(height * dpr)
@@ -90,13 +93,22 @@ export function useCinematicIntroScroll(
 
     const renderFrame = (index: number) => {
       const clamped = Math.max(0, Math.min(HERO_FRAME_COUNT - 1, index))
-      if (clamped === frameRef.current) return
-      frameRef.current = clamped
+      
+      let targetIndex = clamped
+      if (isMobileDevice && step > 1) {
+        targetIndex = Math.round(clamped / step) * step
+        if (targetIndex >= HERO_FRAME_COUNT) targetIndex = HERO_FRAME_COUNT - 1
+      }
 
-      const img = imagesRef.current[clamped]
+      if (targetIndex === frameRef.current) return
+      frameRef.current = targetIndex
+
+      const img = imagesRef.current[targetIndex]
       if (!img?.complete) return
 
-      const { width, height } = pin.getBoundingClientRect()
+      const dpr = isMobileDevice ? 1 : Math.min(window.devicePixelRatio || 1, 2)
+      const width = canvas.width / dpr
+      const height = canvas.height / dpr
       drawFrameCover(ctx, img, width, height)
     }
 
@@ -108,6 +120,11 @@ export function useCinematicIntroScroll(
 
     const loadFrame = (index: number) =>
       new Promise<void>((resolve) => {
+        if (isMobileDevice && index % step !== 0 && index !== 0 && index !== HERO_FRAME_COUNT - 1) {
+          resolve()
+          return
+        }
+
         const img = new Image()
         img.decoding = "async"
         img.src = getHeroFramePath(index)
@@ -169,13 +186,22 @@ export function useCinematicIntroScroll(
 
     const renderFrame = (index: number) => {
       const clamped = Math.max(0, Math.min(HERO_FRAME_COUNT - 1, index))
-      if (clamped === frameRef.current) return
-      frameRef.current = clamped
+      
+      let targetIndex = clamped
+      if (isMobileDevice && step > 1) {
+        targetIndex = Math.round(clamped / step) * step
+        if (targetIndex >= HERO_FRAME_COUNT) targetIndex = HERO_FRAME_COUNT - 1
+      }
 
-      const img = imagesRef.current[clamped]
+      if (targetIndex === frameRef.current) return
+      frameRef.current = targetIndex
+
+      const img = imagesRef.current[targetIndex]
       if (!img?.complete) return
 
-      const { width, height } = pin.getBoundingClientRect()
+      const dpr = isMobileDevice ? 1 : Math.min(window.devicePixelRatio || 1, 2)
+      const width = canvas.width / dpr
+      const height = canvas.height / dpr
       drawFrameCover(ctx, img, width, height)
     }
 
