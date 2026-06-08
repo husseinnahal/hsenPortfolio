@@ -46,18 +46,6 @@ export function HeroCinematicIntro({ introReady = false }: HeroCinematicIntroPro
         .timeline({ paused: true, defaults: { ease: "none" } })
         .to(".hero-cinematic-copy-panel", { x: 0, duration: 1 })
         .fromTo(
-          ".hero-cinematic-copy-item--badge",
-          { y: 32, autoAlpha: 0, rotateX: -25 },
-          { y: 0, autoAlpha: 1, rotateX: 0, duration: 0.55 },
-          "-=0.65"
-        )
-        .fromTo(
-          ".hero-cinematic-copy-item--greeting",
-          { x: 48, autoAlpha: 0 },
-          { x: 0, autoAlpha: 1, duration: 0.5 },
-          "-=0.42"
-        )
-        .fromTo(
           ".hero-cinematic-copy-item--name",
           { scale: 0.88, autoAlpha: 0, filter: "blur(10px)" },
           { scale: 1, autoAlpha: 1, filter: "blur(0px)", duration: 0.65 },

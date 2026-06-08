@@ -27,7 +27,6 @@ import { useState } from "react"
 export function ProjectDetail({ project }: { project: Project }) {
   const [selectedImage, setSelectedImage] = useState(0)
 
-console.log(project);
 
   return (
     <div className=" pb-16">

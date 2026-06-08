@@ -56,8 +56,8 @@ export function AboutMe() {
       className="relative w-full py-24 px-4 overflow-hidden bg-[var(--bg-primary)] border-t border-[var(--border-subtle)]"
     >
       {/* Background glow effects */}
-      <div className="absolute top-[10%] left-[5%] w-[350px] h-[350px] bg-[var(--accent-500)]/5 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-[10%] right-[5%] w-[450px] h-[450px] bg-[var(--violet-500)]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-[10%] left-[5%] w-[350px] h-[350px] bg-[var(--accent-500)]/5 rounded-full blur-[30px] pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[5%] w-[450px] h-[450px] bg-[var(--violet-500)]/5 rounded-full blur-[40px] pointer-events-none" />
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -74,14 +74,14 @@ export function AboutMe() {
               }}
             >
               {/* Pulsing Backlight */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[var(--accent-500)] to-[var(--violet-500)] opacity-20 blur-2xl rounded-[2rem] group-hover:opacity-35 transition-opacity duration-700 pointer-events-none" />
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[var(--accent-500)] to-[var(--violet-500)] opacity-20 blur-xl rounded-[2rem] group-hover:opacity-35 transition-opacity duration-700 pointer-events-none" />
 
               {/* Animated Rotating Border */}
               <div className="absolute inset-0 rounded-[2rem] p-[1px] overflow-hidden bg-white/10 group-hover:bg-white/20 transition-colors duration-500">
                 <div className="absolute inset-[-200%] animate-spin-slower bg-[conic-gradient(from_0deg,transparent,rgba(59,130,246,0.4),transparent,rgba(165,180,252,0.3),transparent)] pointer-events-none" />
                 
                 {/* Photo frame glass overlay */}
-                <div className="absolute inset-[1px] rounded-[calc(2rem-1px)] bg-[#9fc3e0]/30 backdrop-blur-xl overflow-hidden">
+                <div className="absolute inset-[1px] rounded-[calc(2rem-1px)] bg-[#9fc3e0]/30  overflow-hidden">
                   
                   {/* The Image */}
                   <Image

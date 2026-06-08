@@ -164,11 +164,10 @@ export function ProfessionalJourney() {
       {/* Background lights */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[0%] left-[0%] w-full h-full  bg-[black]/80 " />
-        {/* <div className="absolute top-[10%] left-[10%] w-[350px] h-[350px] rounded-full bg-[var(--accent-400)]/10 blur-[120px]" /> */}
 
-        <div className="absolute bottom-[5%] right-[10%] w-[450px] h-[450px] rounded-full bg-[var(--accent-400)]/10 blur-[140px]" />
+        <div className="absolute bottom-[5%] right-[10%] w-[450px] h-[450px] rounded-full bg-[var(--accent-400)]/5 blur-[50px]" />
 
-        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[var(--accent-400)]/[0.03] blur-[160px]" />
+        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[var(--accent-400)]/[0.03] blur-[50px]" />
       </div>
 
       {/* Grid overlay */}
@@ -219,7 +218,7 @@ export function ProfessionalJourney() {
             <div className="experience-tick absolute left-0 top-1/2 w-[2px] h-8 bg-white/10 transition-all duration-500 z-0" />
 
             {/* Glow around active section */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-[#f59e0b]/[0.1] blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-[#f59e0b]/[0.1] blur-[60px] rounded-full pointer-events-none" />
 
             {/* Content */}
             <div className="absolute left-0 top-[calc(50%+2.5rem)] w-[94%] sm:w-[90%] lg:w-[85%]">

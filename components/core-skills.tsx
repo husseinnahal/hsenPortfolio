@@ -39,7 +39,7 @@ export function CoreSkills() {
   return (
     <section id="skills" className="py-25 px-4 bg-[var(--bg-secondary)]  relative overflow-hidden">
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--text-primary)]/5 blur-[100px] pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--text-primary)]/5 blur-[50px] sm:blur-[80px] pointer-events-none"
         data-parallax="skills-glow"
       />
       <div className="container mx-auto relative z-10">

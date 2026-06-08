@@ -64,7 +64,7 @@ export function About() {
             trigger: card,
             start: "top top", 
             end: "bottom top", 
-            scrub: true,
+            scrub: 0.5,
             animation: gsap.to(cardInner, {
               scale: 0.85,
               opacity: 0.2,
@@ -128,34 +128,34 @@ export function About() {
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--accent-400)]/40 to-transparent" />
               
               {/* Floating light orbs — alive background */}
-              <div className="absolute top-[15%] left-[10%] w-[250px] h-[250px] bg-[var(--accent-400)]/10 rounded-full blur-[100px] animate-float pointer-events-none" />
-              <div className="absolute bottom-[20%] right-[15%] w-[350px] h-[350px] bg-[var(--violet-400)]/8 rounded-full blur-[120px] animate-float-slow pointer-events-none" />
-              <div className="absolute top-[60%] left-[50%] w-[200px] h-[200px] bg-white/[0.03] rounded-full blur-[80px] animate-float pointer-events-none" />
+              <div className="hidden sm:block absolute top-[15%] left-[10%] w-[250px] h-[250px] bg-[var(--accent-400)]/10 rounded-full blur-[20px] animate-float pointer-events-none" />
+              <div className="hidden sm:block absolute bottom-[20%] right-[15%] w-[350px] h-[350px] bg-[var(--violet-400)]/8 rounded-full  animate-float-slow pointer-events-none" />
+              <div className="hidden sm:block absolute top-[60%] left-[50%] w-[200px] h-[200px] bg-white/[0.03] rounded-full blur-[20px] animate-float pointer-events-none" />
             </div>
             
             <div className="card-inner container relative z-10 mx-auto px-4 sm:px-6 h-full flex flex-col justify-center max-w-6xl">
               
               {/* Glass Card with animated rotating gradient border */}
-              <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#37a6ff] backdrop-blur-3xl p-8 sm:p-14 lg:p-20 transition-all duration-700 hover:scale-[1.020] hover:border-[var(--accent-400)]/30 shadow-[0_0_120px_rgba(42,79,160,0.25)] hover:shadow-[0_0_60px_rgba(245,158,11,0.30),0_0_140px_rgba(245,158,11,0.35)]">
+              <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#37a6ff]  p-8 sm:p-14 lg:p-20 transition-all duration-700 hover:scale-[1.020] hover:border-[var(--accent-400)]/30 shadow-[0_0_120px_rgba(42,79,160,0.25)] ">
 
                 {/* animated background glow */}
-                <div className="absolute inset-0 opacity-70 pointer-events-none">
+                <div className="hidden sm:block absolute inset-0 opacity-70 pointer-events-none">
                   
                   {/* moving gold light */}
-                  <div className="absolute -top-32 -left-24 w-[320px] h-[320px] bg-yellow-400/10 blur-[120px] rounded-full animate-blob" />
+                  <div className="absolute -top-32 -left-24 w-[320px] h-[320px] bg-yellow-400/10  rounded-full animate-blob" />
 
                   {/* violet light */}
-                  <div className="absolute bottom-[-120px] right-[-60px] w-[260px] h-[260px] bg-violet-500/10 blur-[110px] rounded-full animate-blob-slow" />
+                  <div className="absolute bottom-[-120px] right-[-60px] w-[260px] h-[260px] bg-violet-500/10  rounded-full animate-blob-slow" />
 
                   {/* blue cinematic glow */}
-                  <div className="absolute top-[40%] left-[40%] w-[180px] h-[180px] bg-cyan-400/10 blur-[90px] rounded-full animate-pulse" />
+                  <div className="absolute top-[40%] left-[40%] w-[180px] h-[180px] bg-cyan-400/10  rounded-full animate-pulse" />
                 </div>
 
                 {/* animated border light */}
                 <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden pointer-events-none">
                   <div className="absolute inset-[-200%] animate-spin-slower bg-[conic-gradient(from_0deg,transparent,rgba(251,191,36,0.22),transparent,rgba(168,85,247,0.18),transparent)]" />
                   
-                  <div className="absolute inset-[1px] rounded-[calc(2.5rem-1px)] bg-[#9fc3e0] backdrop-blur-3xl" />
+                  <div className="absolute inset-[1px] rounded-[calc(2.5rem-1px)] bg-[#9fc3e0] " />
                 </div>
 
                 {/* glass reflection */}
@@ -167,36 +167,26 @@ export function About() {
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent" />
 
                 {/* bottom lighting */}
-                <div className="absolute bottom-0 left-[10%] w-[80%] h-[120px] bg-yellow-400/5 blur-[90px] pointer-events-none" />
+                <div className="hidden sm:block absolute bottom-0 left-[10%] w-[80%] h-[120px] bg-yellow-400/5  pointer-events-none" />
 
                 {/* content */}
                 <div className="relative z-10">                
-                {/* Animated rotating gradient border */}
-                {/* <div className="absolute inset-0 rounded-[2.5rem] p-[1px] overflow-hidden pointer-events-none">
-                  <div 
-                    className="absolute inset-[-50%] animate-spin-slow"
-                    style={{
-                      background: `conic-gradient(from 0deg, transparent, rgba(100, 203, 244, 0.4), transparent, rgba(124,156,245,0.3), transparent, rgba(251,191,36,0.2), transparent)`
-                    }}
-                  />
-                  <div className="absolute inset-[1px] rounded-[calc(2.5rem-1px)] bg-[#1c3c8c]/50 backdrop-blur-3xl" />
-                </div> */}
                 
                 {/* Subtle light beam sweeping across the card */}
-                <div className="absolute inset-0 overflow-hidden rounded-[2.5rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                <div className="hidden sm:block absolute inset-0 overflow-hidden rounded-[2.5rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
                   <div 
                     className="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/[0.04] to-transparent skew-x-[-20deg] group-hover:left-[150%] transition-all duration-[2s] ease-out"
                   />
                 </div>
                 
                 {/* Corner light flares */}
-                <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[var(--accent-400)]/15 to-transparent rounded-tl-[2.5rem] pointer-events-none" />
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[var(--violet-400)]/10 to-transparent rounded-br-[2.5rem] pointer-events-none" />
+                <div className="hidden sm:block absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[var(--accent-400)]/15 to-transparent rounded-tl-[2.5rem] pointer-events-none" />
+                <div className="hidden sm:block absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[var(--violet-400)]/10 to-transparent rounded-br-[2.5rem] pointer-events-none" />
 
                 <div className="relative z-10 flex flex-col lg:flex-row gap-10 lg:gap-24 items-start lg:items-center ">
                   <div className="flex-shrink-0 relative stagger-el">
                     {/* Pulsing glow behind the number */}
-                    <div className="absolute -inset-10 bg-gradient-to-br from-white/50 to-white/70 blur-3xl rounded-full animate-pulse-glow pointer-events-none" />
+                    <div className="hidden sm:block absolute -inset-10 bg-gradient-to-br from-white/50 to-white/70 blur-2xl rounded-full animate-pulse-glow pointer-events-none" />
                     <span 
                       className="relative text-8xl lg:text-[14rem] font-black font-mono leading-none tracking-tighter text-transparent transition-all duration-700"
                       style={{ WebkitTextStroke: "1px rgba(255, 255, 255, 0.5)" }}

@@ -63,11 +63,11 @@ export function Technologies() {
 
   return (
     <section
-      className="py-24 px-4 bg-[var(--bg-secondary)]/40 backdrop-blur-[2px] relative overflow-hidden"
+      className="py-24 px-4 bg-[var(--bg-secondary)]/40  relative overflow-hidden"
       data-animate="technologies"
     >
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--accent-400)]/10 rounded-full blur-[120px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--accent-400)]/5 rounded-full blur-[30px] pointer-events-none"
         data-parallax="tech-orb"
       />
 
@@ -102,7 +102,7 @@ export function Technologies() {
               >
                 <div className="w-16 h-16 mb-4 relative flex items-center justify-center ">
                   <div
-                    className={`absolute inset-0 bg-[var(--bg-elevated)] rounded-full blur-xl ${tech.glow} transition-all duration-300`}
+                    className={`absolute inset-0 bg-[var(--bg-elevated)] rounded-full blur-lg ${tech.glow} transition-all duration-300`}
                   />
                   <Image src={tech.icon} alt={tech.name} width={48} height={48} className="w-12 h-12 object-contain relative z-10" />
                 </div>

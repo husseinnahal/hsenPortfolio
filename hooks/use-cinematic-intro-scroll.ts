@@ -142,6 +142,8 @@ export function useCinematicIntroScroll(
       resizeCanvas()
       renderFrame(0)
 
+      if (!enabled) return
+
       for (let start = 1; start < HERO_FRAME_COUNT; start += BATCH) {
         if (cancelled) return
         const end = Math.min(start + BATCH, HERO_FRAME_COUNT)
@@ -161,7 +163,7 @@ export function useCinematicIntroScroll(
       cancelled = true
       ro.disconnect()
     }
-  }, [canvasRef, pinRef])
+  }, [canvasRef, pinRef, enabled])
 
   useEffect(() => {
     const canvas = canvasRef.current

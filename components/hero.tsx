@@ -71,7 +71,7 @@ function HeroContent({ introReady = false }: HeroProps) {
           trigger: sectionRef.current,
           start: "top bottom",
           end: "bottom top",
-          scrub: true,
+          scrub: 0.5,
         },
       })
 
@@ -82,7 +82,7 @@ function HeroContent({ introReady = false }: HeroProps) {
           trigger: sectionRef.current,
           start: "top bottom",
           end: "bottom top",
-          scrub: true,
+          scrub: 0.5,
         },
       })
     }, sectionRef)
@@ -194,11 +194,11 @@ function HeroContent({ introReady = false }: HeroProps) {
       </div>
 
       <div
-        className="hero-layer-back absolute top-[20%] left-[15%] h-64 w-64 rounded-full bg-[var(--accent-400)]/5 blur-[80px]"
+        className="hero-layer-back absolute top-[20%] left-[15%] h-64 w-64 rounded-full bg-[var(--accent-400)]/5 "
         style={{ transform: `translate(${x * 30}px, ${y * 30}px)` }}
       />
       <div
-        className="hero-layer-back absolute bottom-[25%] right-[10%] h-80 w-80 rounded-full bg-[var(--violet-500)]/10 blur-[100px]"
+        className="hero-layer-back absolute bottom-[25%] right-[10%] h-80 w-80 rounded-full bg-[var(--violet-500)]/10 "
         style={{ transform: `translate(${x * -20}px, ${y * -20}px)` }}
       />
 
@@ -277,7 +277,7 @@ function HeroContent({ introReady = false }: HeroProps) {
               ref={imageRef}
               className="relative preserve-3d transition-transform duration-200 ease-out will-change-transform"
             >
-              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[var(--accent-400)]/20 via-transparent to-[var(--accent-400)]/10 blur-2xl" />
+              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[var(--accent-400)]/20 via-transparent to-[var(--accent-400)]/10 " />
               <div className="gradient-border relative rounded-[1.75rem] p-[2px]">
                 <div className="relative aspect-[4/5] w-[min(100%,320px)] overflow-hidden rounded-[1.65rem] bg-[var(--bg-card)] sm:w-[360px]">
                   <Image

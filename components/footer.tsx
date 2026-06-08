@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--bg-primary)]/60 backdrop-blur-sm py-12 px-4 sm:px-6 border-t border-[var(--border-default)]">
+    <footer className="bg-[var(--bg-primary)]/60 py-12 px-4 sm:px-6 border-t border-[var(--border-default)]">
       <div className="container mx-auto">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div>
