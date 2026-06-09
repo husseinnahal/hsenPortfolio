@@ -2,13 +2,23 @@
 
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function ProfessionalJourney() {
   const sectionRef = useRef<HTMLElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 550)
+    }
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   const experiences = [
     {
@@ -38,6 +48,32 @@ export function ProfessionalJourney() {
   ]
 
   useEffect(() => {
+    if (isMobile) {
+      const ctx = gsap.context(() => {
+        const cards = gsap.utils.toArray<HTMLElement>(".experience-card")
+        cards.forEach((card) => {
+          const content = card.querySelector(".experience-content")
+          if (content) {
+            gsap.fromTo(content,
+              { opacity: 0.3, y: 30 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 80%",
+                  end: "bottom 30%",
+                  toggleActions: "play none none reverse",
+                }
+              }
+            )
+          }
+        })
+      }, sectionRef)
+      return () => ctx.revert()
+    }
+
     const ctx = gsap.context(() => {
       const section = sectionRef.current
       const wrapper = wrapperRef.current
@@ -153,13 +189,21 @@ export function ProfessionalJourney() {
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [isMobile])
 
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full flex flex-col justify-center overflow-hidden relative bg-cover bg-center bg-no-repeat bg-fixed"
-      style={{ backgroundImage: "url('/images/land.gif')", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed"  }}
+      className={`w-full flex flex-col justify-center overflow-hidden relative ${
+        isMobile ? "h-auto py-24 min-h-screen" : "h-screen"
+      }`}
+      style={{ 
+        backgroundImage:  isMobile ? "url('/images/land.webp')" :  "url('/images/land.gif')", 
+        backgroundRepeat: "no-repeat", 
+        backgroundSize: "cover", 
+        backgroundPosition: "center", 
+        backgroundAttachment: isMobile ? "scroll" : "fixed"  
+      }}
     >
       {/* Background lights */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -183,7 +227,9 @@ export function ProfessionalJourney() {
       />
 
       {/* Title */}
-      <div className="absolute top-0 left-0 w-full pt-20 px-6 sm:px-8 lg:px-20 z-10 pointer-events-none">
+      <div className={`absolute left-0 w-full px-6 sm:px-8 lg:px-20 z-10 pointer-events-none ${
+        isMobile ? "top-8 pt-8" : "top-0 pt-20"
+      }`}>
         <h2 className="text-3xl flex items-center gap-x-2 flex-wrap sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter drop-shadow-2xl text-[(var(--text-primary))] ">
           <span className="text-[35px] inline-block animate-spin-slow text-[var(--accent-50)]" >
              ✶
@@ -198,41 +244,76 @@ export function ProfessionalJourney() {
       {/* Wrapper */}
       <div
         ref={wrapperRef}
-        className="flex gap-12 w-max items-center h-full relative pl-[15vw] lg:pl-[20vw] pb-12"
+        className={
+          isMobile
+            ? "flex flex-col gap-12 w-full max-w-2xl mx-auto px-6 relative pl-12 sm:pl-16 pb-12 pt-28"
+            : "flex gap-12 w-max items-center h-full relative pl-[15vw] lg:pl-[20vw] pb-12"
+        }
       >
         {/* Timeline line */}
-        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-white/10 -translate-y-1/2 z-0 overflow-hidden">
-          <div className="timeline-glow-line absolute top-0 left-0 h-full bg-[#ffa200] shadow-[0_0_20px_rgba(245,158,11,0.9)] w-0" />
+        <div className={
+          isMobile
+            ? "absolute left-6 sm:left-10 top-28 bottom-12 w-[2px] bg-white/10 z-0"
+            : "absolute top-1/2 left-0 w-full h-[2px] bg-white/10 -translate-y-1/2 z-0 overflow-hidden"
+        }>
+          {!isMobile && (
+            <div className="timeline-glow-line absolute top-0 left-0 h-full bg-[#ffa200] shadow-[0_0_20px_rgba(245,158,11,0.9)] w-0" />
+          )}
+          {isMobile && (
+            <div className="absolute top-0 left-0 w-full h-full bg-[#ffa200]/30" />
+          )}
         </div>
 
         {experiences.map((exp, index) => (
           <div
             key={index}
-            className="experience-card w-[85vw] sm:w-[65vw] lg:w-[45vw] h-full flex-shrink-0 relative group ml-4"
+            className={
+              isMobile
+                ? "experience-card w-full relative ml-0"
+                : "experience-card w-[85vw] sm:w-[65vw] lg:w-[45vw] h-full flex-shrink-0 relative group ml-4"
+            }
           >
 
             {/* Dot */}
-            <div className="experience-dot absolute top-[49%] left-[-10px] w-6 h-6 rounded-full bg-[var(--accent-200)] border-[4px] border-black/30 -translate-y-1/2 -translate-x-1/2 z-10 transition-all duration-500" />
+            <div className={
+              isMobile
+                ? "experience-dot absolute left-[-31px] sm:left-[-35px] top-4 w-5 h-5 rounded-full bg-[#ffa200] border-[4px] border-[#07111f] z-10"
+                : "experience-dot absolute top-[49%] left-[-10px] w-6 h-6 rounded-full bg-[var(--accent-200)] border-[4px] border-black/30 -translate-y-1/2 -translate-x-1/2 z-10 transition-all duration-500"
+            } />
 
             {/* Tick */}
-            <div className="experience-tick absolute left-0 top-1/2 w-[2px] h-8 bg-white/10 transition-all duration-500 z-0" />
+            {!isMobile && (
+              <div className="experience-tick absolute left-0 top-1/2 w-[2px] h-8 bg-white/10 transition-all duration-500 z-0" />
+            )}
 
             {/* Glow around active section */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-[#f59e0b]/[0.1] blur-[60px] rounded-full pointer-events-none" />
+            <div className={
+              isMobile
+                ? "absolute left-[-20px] top-0 w-[150px] h-[150px] bg-[#f59e0b]/[0.05] blur-[40px] rounded-full pointer-events-none"
+                : "absolute left-0 top-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-[#f59e0b]/[0.1] blur-[60px] rounded-full pointer-events-none"
+            } />
 
             {/* Content */}
-            <div className="absolute left-0 top-[calc(50%+2.5rem)] w-[94%] sm:w-[90%] lg:w-[85%]">
-              <div className="experience-content opacity-40 translate-y-4 transition-all duration-700 ease-out">
-                <span className="font-mono text-sm sm:text-base tracking-[0.3em] uppercase text-[#ffa200] drop-shadow-[0_0_8px_rgba(245,158,11,0.5)] block mb-4">
+            <div className={
+              isMobile
+                ? "w-full"
+                : "absolute left-0 top-[calc(50%+2.5rem)] w-[94%] sm:w-[90%] lg:w-[85%]"
+            }>
+              <div className={
+                isMobile
+                  ? "experience-content opacity-100 transition-all duration-700 ease-out"
+                  : "experience-content opacity-40 translate-y-4 transition-all duration-700 ease-out"
+              }>
+                <span className="font-mono text-xs sm:text-sm tracking-[0.3em] uppercase text-[#ffa200] drop-shadow-[0_0_8px_rgba(245,158,11,0.5)] block mb-2 sm:mb-4">
                   {exp.period}
                 </span>
 
-                <h3 className="text-xl sm:text-3xl lg:text-4xl font-black mb-4 text-[(var(--text-primary))]  tracking-tight">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-black mb-2 sm:mb-4 text-[(var(--text-primary))]  tracking-tight">
                   {exp.title}
                 </h3>
 
-                <div className="flex flex-wrap items-center gap-3 mb-6">
-                  <span className="text-base sm:text-lg font-medium text-transparent bg-clip-text text-accent-gradient">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <span className="text-sm sm:text-base lg:text-lg font-medium text-transparent bg-clip-text text-accent-gradient">
                     {exp.subtitle}
                   </span>
 
@@ -243,7 +324,7 @@ export function ProfessionalJourney() {
                   </span>
                 </div>
 
-                <p className="text-sm sm:text-base lg:text-lg text-[var(--text-primary)] font-light leading-relaxed max-w-2xl">
+                <p className="text-xs sm:text-sm sm:text-base lg:text-lg text-[var(--text-primary)] font-light leading-relaxed max-w-2xl">
                   {exp.description}
                 </p>
               </div>
@@ -252,7 +333,9 @@ export function ProfessionalJourney() {
         ))}
 
         {/* Ending space */}
-        <div className="w-[15vw] lg:w-[20vw] h-full flex-shrink-0" />
+        {!isMobile && (
+          <div className="w-[15vw] lg:w-[20vw] h-full flex-shrink-0" />
+        )}
       </div>
     </section>
   )

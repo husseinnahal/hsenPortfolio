@@ -1,6 +1,5 @@
 import { AnimatedStarsBackground } from "@/components/animated-stars-background"
 import { Footer } from "@/components/footer"
-import { Header } from "@/components/header"
 import { ProjectDetail } from "@/components/project-detail"
 import { getProjectById } from "@/lib/projects-data"
 import { notFound } from "next/navigation"
@@ -22,7 +21,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     <div className="relative min-h-screen text-[var(--text-primary)]">
       <AnimatedStarsBackground />
       <div className="relative z-[1]">
-        <Header />
         <ProjectDetail project={project} />
         <Footer />
       </div>

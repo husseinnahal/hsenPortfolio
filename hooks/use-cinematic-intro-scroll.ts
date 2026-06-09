@@ -28,7 +28,7 @@ function drawFrameCover(
   let offsetX: number
   let offsetY: number
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 640
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 550
 
   if (imgRatio > canvasRatio) {
     drawHeight = height
@@ -65,8 +65,8 @@ export function useCinematicIntroScroll(
   const imagesRef = useRef<(HTMLImageElement | undefined)[]>([])
   const frameRef = useRef(-1)
 
-  const isMobileDevice = typeof window !== "undefined" && window.innerWidth < 640
-  const step = isMobileDevice ? 2 : 1
+  const isMobileDevice = typeof window !== "undefined" && window.innerWidth < 550
+  const step =  1
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -95,10 +95,10 @@ export function useCinematicIntroScroll(
       const clamped = Math.max(0, Math.min(HERO_FRAME_COUNT - 1, index))
       
       let targetIndex = clamped
-      if (isMobileDevice && step > 1) {
-        targetIndex = Math.round(clamped / step) * step
-        if (targetIndex >= HERO_FRAME_COUNT) targetIndex = HERO_FRAME_COUNT - 1
-      }
+      // if (isMobileDevice && step > 1) {
+      //   targetIndex = Math.round(clamped / step) * step
+      //   if (targetIndex >= HERO_FRAME_COUNT) targetIndex = HERO_FRAME_COUNT - 1
+      // }
 
       if (targetIndex === frameRef.current) return
       frameRef.current = targetIndex

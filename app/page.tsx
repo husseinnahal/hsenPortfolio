@@ -1,18 +1,18 @@
 "use client"
 
-import { AboutMe } from "@/components/about-me"
 import { About } from "@/components/about"
+import { AboutMe } from "@/components/about-me"
 import { CoreSkills } from "@/components/core-skills"
 import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { ImportantProjects } from "@/components/important-projects"
+import { Preloader } from "@/components/preloader"
 import { ProfessionalJourney } from "@/components/professional-journey"
 import { ScrollAnimate } from "@/components/scroll-animate"
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider"
 import { Technologies } from "@/components/technologies"
 import { useState } from "react"
-import { Header } from "@/components/header"
-import { Preloader } from "@/components/preloader"
 
 export default function Home() {
   const [introDone, setIntroDone] = useState(false)

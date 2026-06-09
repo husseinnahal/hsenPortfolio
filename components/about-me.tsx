@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -78,7 +78,7 @@ export function AboutMe() {
 
               {/* Animated Rotating Border */}
               <div className="absolute inset-0 rounded-[2rem] p-[1px] overflow-hidden bg-white/10 group-hover:bg-white/20 transition-colors duration-500">
-                <div className="absolute inset-[-200%] animate-spin-slower bg-[conic-gradient(from_0deg,transparent,rgba(59,130,246,0.4),transparent,rgba(165,180,252,0.3),transparent)] pointer-events-none" />
+                <div className="hidden sm:block absolute inset-[-200%] animate-spin-slower bg-[conic-gradient(from_0deg,transparent,rgba(59,130,246,0.4),transparent,rgba(165,180,252,0.3),transparent)] pointer-events-none" />
                 
                 {/* Photo frame glass overlay */}
                 <div className="absolute inset-[1px] rounded-[calc(2rem-1px)] bg-[#9fc3e0]/30  overflow-hidden">

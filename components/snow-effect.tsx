@@ -16,7 +16,7 @@ export function SnowEffect() {
 
   useEffect(() => {
     // Generate 45 snowflakes with randomized properties
-    const flakes: Snowflake[] = Array.from({ length: 40 }).map((_, i) => ({
+    const flakes: Snowflake[] = Array.from({ length: 35 }).map((_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
       size: `${Math.random() * 3 + 2}px`, // between 2px and 5px

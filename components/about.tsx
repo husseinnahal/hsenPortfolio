@@ -36,7 +36,9 @@ export function About() {
   const containerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia(containerRef)
+    
+    mm.add("(min-width: 600px)", () => {
       const cards = gsap.utils.toArray<HTMLElement>(".about-card")
       
       cards.forEach((card, i) => {
@@ -74,9 +76,9 @@ export function About() {
           })
         }
       })
-    }, containerRef)
+    })
 
-    return () => ctx.revert()
+    return () => mm.revert()
   }, [])
 
   return (
@@ -117,7 +119,7 @@ export function About() {
         {PANELS.map((panel, i) => (
           <div 
             key={i} 
-            className="about-card sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden border-t-3 border-[#9fc3e0]"
+            className="about-card sm:sticky top-0 py-16 sm:py-0 sm:h-screen w-full flex items-center justify-center overflow-hidden border-t-3 border-[#9fc3e0]"
             style={{ zIndex: i + 2 }}
           >
             {/* Opaque Background */}
@@ -136,7 +138,7 @@ export function About() {
             <div className="card-inner container relative z-10 mx-auto px-4 sm:px-6 h-full flex flex-col justify-center max-w-6xl">
               
               {/* Glass Card with animated rotating gradient border */}
-              <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#37a6ff]  p-8 sm:p-14 lg:p-20 transition-all duration-700 hover:scale-[1.020] hover:border-[var(--accent-400)]/30 shadow-[0_0_120px_rgba(42,79,160,0.25)] ">
+              <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#37a6ff]  p-8 sm:p-14 lg:p-20 transition-all duration-700  shadow-[0_0_120px_rgba(42,79,160,0.25)] ">
 
                 {/* animated background glow */}
                 <div className="hidden sm:block absolute inset-0 opacity-70 pointer-events-none">
@@ -153,7 +155,7 @@ export function About() {
 
                 {/* animated border light */}
                 <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden pointer-events-none">
-                  <div className="absolute inset-[-200%] animate-spin-slower bg-[conic-gradient(from_0deg,transparent,rgba(251,191,36,0.22),transparent,rgba(168,85,247,0.18),transparent)]" />
+                  <div className="hidden sm:block absolute inset-[-200%] animate-spin-slower bg-[conic-gradient(from_0deg,transparent,rgba(251,191,36,0.22),transparent,rgba(168,85,247,0.18),transparent)]" />
                   
                   <div className="absolute inset-[1px] rounded-[calc(2.5rem-1px)] bg-[#9fc3e0] " />
                 </div>

@@ -378,7 +378,7 @@ html.lenis, html.lenis body {
 }
 
 .animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+  animation: spin-slow 5s linear infinite;
 }
 
 .animate-gradient-move {
@@ -635,20 +635,7 @@ html.lenis, html.lenis body {
   backdrop-filter: blur(10px);
 }
 
-
-@keyframes spinSlow {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: spinSlow 2s linear infinite;
-}/* Snowfall effect */
+/* Snowfall effect */
 @keyframes snow-fall {
   0% {
     transform: translateY(-10px) translateX(0);

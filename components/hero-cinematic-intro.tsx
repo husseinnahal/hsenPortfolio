@@ -119,6 +119,7 @@ export function HeroCinematicIntro({ introReady = false }: HeroCinematicIntroPro
   }, [introReady])
 
   return (
+
     <div ref={wrapperRef} className="hero-cinematic-wrapper relative z-[0]" style={{ height: '700vh' }}>
       <section
         ref={sectionRef}
@@ -224,5 +225,7 @@ export function HeroCinematicIntro({ introReady = false }: HeroCinematicIntroPro
         </div>
       </section>
     </div>
+
+
   )
 }
