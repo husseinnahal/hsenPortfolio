@@ -10,7 +10,8 @@ import {
   Code2,
   ExternalLink,
   Github,
-  Zap
+  Zap,
+  X
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -26,6 +27,7 @@ import { useState } from "react"
  */
 export function ProjectDetail({ project }: { project: Project }) {
   const [selectedImage, setSelectedImage] = useState(0)
+  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null)
 
 
   return (
@@ -145,13 +147,18 @@ export function ProjectDetail({ project }: { project: Project }) {
             <TabsTrigger style={{cursor:"pointer"}} value="overview" className="data-[state=active]:bg-[var(--accent-500)] data-[state=active]:text-[var(--bg-primary)] text-gray-300">
               Overview
             </TabsTrigger>
-            <TabsTrigger style={{cursor:"pointer"}} value="gallery" className="data-[state=active]:bg-[var(--accent-500)] data-[state=active]:text-[var(--bg-primary)] text-gray-300">
-              Gallery
-            </TabsTrigger>
+            {project.subProjects && project.subProjects.length > 0 ? (
+              <TabsTrigger style={{cursor:"pointer"}} value="subprojects" className="data-[state=active]:bg-[var(--accent-500)] data-[state=active]:text-[var(--bg-primary)] text-gray-300">
+                Projects List
+              </TabsTrigger>
+            ) : (
+              <TabsTrigger style={{cursor:"pointer"}} value="gallery" className="data-[state=active]:bg-[var(--accent-500)] data-[state=active]:text-[var(--bg-primary)] text-gray-300">
+                Gallery
+              </TabsTrigger>
+            )}
             <TabsTrigger style={{cursor:"pointer"}} value="tech" className="data-[state=active]:bg-[var(--accent-500)] data-[state=active]:text-[var(--bg-primary)] text-gray-300">
               Tech Stack
             </TabsTrigger>
-
           </TabsList>
 
           <TabsContent value="overview" className="space-y-8">
@@ -177,15 +184,19 @@ export function ProjectDetail({ project }: { project: Project }) {
 
           </TabsContent>
 
-          <TabsContent value="gallery" className="space-y-8 ">
-            {/* Image Gallery */}
-            <div className="space-y-6 w-full sm:w-3/4 mx-auto" >
+          {(!project.subProjects || project.subProjects.length === 0) && (
+            <TabsContent value="gallery" className="space-y-8 ">
+              {/* Image Gallery */}
+              <div className="space-y-6 w-full sm:w-3/4 mx-auto" >
               {/* Main Image */}
-              <div className="relative  bg-slate-800 rounded-lg overflow-hidden">
+              <div 
+                className="relative bg-slate-800 rounded-lg overflow-hidden cursor-zoom-in group"
+                onClick={() => setFullscreenImage(project.images[selectedImage])}
+              >
                 <Image
                   src={project.images[selectedImage] || "/placeholder.svg?height=600&width=800"}
                   alt={`${project.title} screenshot ${selectedImage + 1}`}
-                  className="w-full h-full object-inherit"
+                  className="w-full h-full object-inherit transition-transform duration-500 group-hover:scale-105"
                   style={{maxHeight:"550px"}}
                   width={200}
                   height={100}
@@ -215,6 +226,7 @@ export function ProjectDetail({ project }: { project: Project }) {
               </div>
             </div>
           </TabsContent>
+          )}
 
           <TabsContent value="tech" className="space-y-8">
             {/* Tech Stack */}
@@ -285,11 +297,87 @@ export function ProjectDetail({ project }: { project: Project }) {
             </div>
           </TabsContent>
 
+          {project.subProjects && project.subProjects.length > 0 && (
+            <TabsContent value="subprojects" className="space-y-8 pt-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {project.subProjects.map((sp, index) => (
+                  <div key={index} className="group relative rounded-2xl overflow-hidden bg-slate-800/80 border border-slate-700 hover:border-[var(--accent-400)]/50 transition-all duration-500 shadow-lg hover:shadow-[0_10px_30px_rgba(96,165,250,0.15)] flex flex-col hover:-translate-y-1">
+                    {/* Image Header */}
+                    <div 
+                      className="relative h-56 w-full overflow-hidden bg-slate-900 cursor-zoom-in"
+                      onClick={() => setFullscreenImage(sp.image)}
+                    >
+                      <Image 
+                        src={sp.image} 
+                        alt={sp.title} 
+                        fill 
+                        className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90 pointer-events-none" />
+                    </div>
+                    
+                    {/* Content Section overlapping image */}
+                    <div className="p-6 flex-1 flex flex-col justify-between bg-slate-800/95 backdrop-blur-md relative z-10 -mt-8 rounded-t-3xl border-t border-white/5">
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-slate-700 rounded-b-md" />
+                      
+                      <div className="pt-2">
+                        <h3 className="text-white text-xl font-bold mb-3 group-hover:text-[var(--accent-400)] transition-colors">{sp.title}</h3>
+                        <p className="text-gray-400 text-sm mb-6 leading-relaxed line-clamp-3">{sp.description}</p>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-3 mt-auto">
+                        {sp.liveUrl && sp.liveUrl !== "#" && (
+                          <Link href={sp.liveUrl} target="_blank" className="flex-1">
+                            <Button size="sm" className="w-full btn-shimmer border-0 font-semibold text-xs h-10 shadow-md">
+                              <ExternalLink className="w-4 h-4 mr-2" /> Live
+                            </Button>
+                          </Link>
+                        )}
+                        {sp.githubUrl && sp.githubUrl !== "#" && (
+                          <Link href={sp.githubUrl} target="_blank" className="flex-1">
+                            <Button size="sm" variant="outline" className="w-full border-slate-600 text-white hover:bg-slate-700 bg-slate-800/50 text-xs h-10 shadow-sm transition-colors">
+                              <Github className="w-4 h-4 mr-2" /> Code
+                            </Button>
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+          )}
 
         </Tabs>
 
 
       </div>
+
+      {/* Fullscreen Image Modal */}
+      {fullscreenImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-sm cursor-zoom-out"
+          onClick={() => setFullscreenImage(null)}
+        >
+          <div className="relative w-full h-full max-w-6xl max-h-screen">
+            <Image
+              src={fullscreenImage}
+              alt="Fullscreen view"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full p-2 transition-colors z-10"
+            onClick={(e) => {
+              e.stopPropagation()
+              setFullscreenImage(null)
+            }}
+          >
+            <X size={24} />
+          </button>
+        </div>
+      )}
     </div>
   )
 }

@@ -1,3 +1,11 @@
+export interface SubProject {
+  title: string
+  description: string
+  image: string
+  liveUrl?: string
+  githubUrl?: string
+}
+
 export interface Project {
   id: string
   title: string
@@ -15,7 +23,7 @@ export interface Project {
     database: string[]
     tools: string[]
   }
-
+  subProjects?: SubProject[]
 }
 
 export const projects: Project[] = [
@@ -111,7 +119,70 @@ export const projects: Project[] = [
       backend: ["Node.js", "Express.js", "PHP"],
       database: ["SQL", "MongoDB"],
       tools: ["Git", "Github","Postman", "Figma"],
-    }
+    },
+    subProjects: [
+      {
+        title: "JewelFlow",
+        description: "A business management solution that streamlines purchasing, inventory control, sales, and supplier management for jewelry stores.",
+        image: "/images/others/other2.png",
+        liveUrl: "#",
+      },    
+      {
+        title: "SmartMart",
+        description: "A comprehensive platform for managing products, inventory, suppliers, sales, and daily supermarket operations.",
+        image: "/images/others/other1.jpg",
+        liveUrl: "#",
+      },     
+      {
+        title: "We Care Lebanon",
+        description: "A health products management system for inventory tracking, supplier management, sales processing, and stock control.",
+        image: "/images/others/wecare.jpg",
+        liveUrl: "#",
+      },
+      {
+        title: "Oren",
+        description: "An e-commerce platform for selling watches, sunglasses, and perfumes with product management, shopping cart, and secure checkout.",
+        image: "/images/others/oren.png",
+        liveUrl: "https://oreenlb.com/",
+      },
+      {
+        title: "MSD",
+        description: "A modern online store offering car accessories, automotive upgrades, and vehicle care products.",
+        image: "/images/others/msd.png",
+        liveUrl: "https://www.msdcarshop.com",
+      },
+      {
+        title: "FooDev",
+        description: "An interactive restaurant menu system that allows customers to customize meals, select ingredients, and place personalized orders.",
+        image: "/images/others/foodev.jpg",
+        liveUrl: "https://fooddevv.netlify.app",
+      },
+      {
+        title: "Electrician",
+        description: "A professional portfolio website for an electrician, featuring services, projects, and contact details.",
+        image: "/images/others/other3.png",
+        liveUrl: "https://elektrisch.vercel.app",
+      },
+      {
+        title: "Basma",
+        description: "A professional company portfolio website showcasing services, projects, and business identity.",
+        image: "/images/others/other4.png",
+        liveUrl: "https://basmaa.online",
+      },
+      {
+        title: "Elegance Edge",
+        description: "An e-commerce platform for a fashion and apparel brand.",
+        image: "/images/others/elegance.jpg",
+        liveUrl: "#",
+      },
+      {
+        title: "Al-Mashtal",
+        description: "An online nursery and plant shop.",
+        image: "/images/others/lmashtal.jpeg",
+        liveUrl: "#",
+      },
+
+    ]
   }
 
 ]
